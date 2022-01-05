@@ -2,6 +2,10 @@ import ContactForm from "./components/ContactForm/ContactForm";
 import Filter from "./components/Filter/Filter";
 import ContactList from "./components/ContactList/ContactList";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
+import LoginForm from "./components/LoginForm/LoginForm";
+import RegLogMenu from "./components/RegLogMenu/RegLogMenu";
+import { Route, Routes } from "react-router-dom";
+
 import {
   useFetchContactsQuery,
   useDeleteContactMutation,
@@ -26,18 +30,29 @@ export default function App() {
 
   return (
     <div className="container">
-      <RegistrationForm />
-      <ContactForm />
-      <Filter onChange={(e) => setFilter(e.target.value)} />
-      {isFetching ? (
-        <h1>Loading...</h1>
-      ) : (
-        <ContactList
-          data={getFilteredElems(data)}
-          onDelete={deleteContact}
-          deleting={isDeleting}
+      <RegLogMenu />
+      <Routes>
+        <Route path="/" element={<RegistrationForm />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route
+          path="/phonebook"
+          element={
+            <>
+              <ContactForm />,
+              <Filter onChange={(e) => setFilter(e.target.value)} />,
+              {isFetching ? (
+                <h1>Loading...</h1>
+              ) : (
+                <ContactList
+                  data={getFilteredElems(data)}
+                  onDelete={deleteContact}
+                  deleting={isDeleting}
+                />
+              )}
+            </>
+          }
         />
-      )}
+      </Routes>
     </div>
   );
 }

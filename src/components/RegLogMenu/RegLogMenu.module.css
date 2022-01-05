@@ -1,0 +1,16 @@
+.navLink {
+    color:rgb(156, 156, 156);
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.activeNavLink {
+    color: rgb(238, 173, 113);
+    font-size: 20px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.activeNavLink:focus,:active {
+    box-shadow: none;
+}
