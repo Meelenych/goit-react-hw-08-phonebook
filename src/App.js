@@ -1,6 +1,7 @@
 import ContactForm from "./components/ContactForm/ContactForm";
 import Filter from "./components/Filter/Filter";
 import ContactList from "./components/ContactList/ContactList";
+import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import {
   useFetchContactsQuery,
   useDeleteContactMutation,
@@ -25,6 +26,7 @@ export default function App() {
 
   return (
     <div className="container">
+      <RegistrationForm />
       <ContactForm />
       <Filter onChange={(e) => setFilter(e.target.value)} />
       {isFetching ? (
