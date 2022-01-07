@@ -22,6 +22,14 @@ export default function RegLogMenu() {
 				>
 					Login
 				</NavLink>
+				<NavLink
+					to="/phonebook"
+					className={({ isActive }) =>
+						isActive ? styles.activeNavLink : styles.navLink
+					}
+				>
+					Phonebook
+				</NavLink>
 			</nav>
 		</>
 	);
