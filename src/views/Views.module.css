@@ -1,4 +1,4 @@
-.homeView {
+/* .homeView {
   height: 90vh;
   width: 100%;
   background-image: url(../images/wall.jpg);
@@ -6,11 +6,10 @@
   background-size: cover;
   background-position: center;
   border-radius: 10px;
-  overflow: hidden;
-
-  
-}
+  overflow: hidden;  
+} */
 
 .titleHome {
     color: rgb(75, 63, 42);
+    color:red;
 }
