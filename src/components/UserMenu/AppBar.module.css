@@ -10,5 +10,5 @@
 .headerPositioning{
  display: flex;
  justify-content: space-between;
- align-items: stretch;
+ align-items: center;
 }

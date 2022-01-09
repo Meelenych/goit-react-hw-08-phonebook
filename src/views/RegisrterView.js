@@ -33,7 +33,7 @@ export default function RegisterView() {
 
   return (
     <div className={styles.signup}>
-      <h1 className={styles.title}>Please register here</h1>
+      <h2 className={styles.title}>Please register here</h2>
       <div>
         <form onSubmit={handleSubmit} className={styles.form}>
           <label>
@@ -69,7 +69,9 @@ export default function RegisterView() {
             />
           </label>
 
-          <button type="submit">Go where you must go, and hope!</button>
+          <button type="submit" className={styles.viewBtn}>
+            Go where you must go, and hope!
+          </button>
         </form>
       </div>
     </div>

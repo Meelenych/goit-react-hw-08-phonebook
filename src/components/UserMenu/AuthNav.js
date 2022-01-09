@@ -4,7 +4,7 @@ import styles from "./AuthNav.module.css";
 
 export default function AuthNav() {
   return (
-    <div>
+    <div className={styles.AuthNavPositioning}>
       <NavLink
         to={`/register`}
         className={({ isActive }) =>

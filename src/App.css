@@ -46,9 +46,11 @@ input {
     font-family:inherit;
 }
 
-input :active {
+input:active,
+input:focus,
+input:hover {
 	box-shadow: 2px 3px 10px 2px rgb(255, 124, 1);
-     transition-property: all;
+    transition-property: all;
     transition-duration: 500ms;
     transition-timing-function: linear;
     transition-delay: 0;

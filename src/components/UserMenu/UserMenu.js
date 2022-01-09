@@ -10,10 +10,8 @@ export default function UserMenu() {
 
   return (
     <div className={styles.userMenu}>
-      <span>
-        <img src={defaultAvatar} alt="" width="32" className={styles.avatar} />
-        The Ring has awoken, <br /> it’s heard its masters call, {name}!
-      </span>
+      <img src={defaultAvatar} alt="" width="32" className={styles.avatar} />
+      <span>The Ring has awoken, {name}! </span>
       <button
         type="button"
         onClick={() => dispatch(logOut())}

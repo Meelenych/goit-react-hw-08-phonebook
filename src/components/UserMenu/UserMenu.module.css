@@ -3,13 +3,16 @@
 	line-height: 40px;
 	color: wheat;
 	text-shadow: 2px 2px 5px rgb(255, 124, 1);
- 
+   display: flex;
+   flex-wrap: wrap;
+   gap: 10px;
 
-   display: inline-block;
-    justify-content: end;
+
 }
 
 .avatar {
+    margin: 0;
+    display: flex;
     width: 35px;
     height: 35px;
     border-radius: 50%;

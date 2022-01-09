@@ -15,3 +15,7 @@
 .activeNavLink:focus,:active {
     box-shadow: none;
 }
+
+.AuthNavPositioning {
+    display: inline-block;
+}

@@ -29,10 +29,10 @@ export default function LoginView() {
 
   return (
     <div className={styles.loginContainer}>
-      <h1 className={styles.title}>
+      <h2 className={styles.title}>
         Oh, it’s quite simple. If you are a friend, you speak the password, and
         the doors will open...
-      </h1>
+      </h2>
       <div>
         <form onSubmit={handleSubmit} className={styles.form}>
           <label>
@@ -57,7 +57,7 @@ export default function LoginView() {
             />
           </label>
 
-          <button type="submit">
+          <button type="submit" className={styles.viewBtn}>
             I’m coming, Mr. Frodo!
             {/* You shall not pass! */}
           </button>

@@ -9,13 +9,12 @@ export default function AppBar() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
     //   <div className={styles.headerBackground}>
-    <div>
+
+    <header style={styles.header}>
       <div className={styles.headerPositioning}>
-        <header style={styles.header}>
-          <Navigation />
-          {isLoggedIn ? <UserMenu /> : <AuthNav />}
-        </header>
+        <Navigation />
+        {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </div>
-    </div>
+    </header>
   );
 }
