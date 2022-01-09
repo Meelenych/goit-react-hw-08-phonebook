@@ -1,0 +1,14 @@
+.headerBackground {
+    background-image: url("../../images/fellowship.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 150px;
+    border-radius: 20px;
+}
+
+.headerPositioning{
+ display: flex;
+ justify-content: space-between;
+ align-items: stretch;
+}

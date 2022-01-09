@@ -1,0 +1,22 @@
+.navLink {
+    color:rgb(156, 156, 156);
+    font-size: 30px;
+    text-decoration: none;
+    margin: 10px;
+}
+
+.activeNavLink {
+    color: wheat;
+    font-size: 30px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.activeNavLink:focus,:active {
+    box-shadow: none;
+}
+
+.navPositioning{
+   display: inline-block;
+
+}

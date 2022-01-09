@@ -1,75 +1,62 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import ContactForm from "./components/ContactForm/ContactForm";
-import Filter from "./components/Filter/Filter";
-import ContactList from "./components/ContactList/ContactList";
-import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
-import LoginForm from "./components/LoginForm/LoginForm";
-// import RegLogMenu from "./components/RegLogMenu/RegLogMenu";
-// import UserMenu from "./components/UserMenu/UserMenu";
-import { Route, Routes } from "react-router-dom";
-import {
-  useFetchContactsQuery,
-  useDeleteContactMutation,
-} from "./redux/contacts/slice";
-import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { lazy, useEffect, Suspense } from "react";
 import "./App.css";
-import AppBar from "./components/AppBar/AppBar";
-import { authOperations } from "./redux/auth/auth-operations";
+import AppBar from "./components/UserMenu/AppBar";
+import { fetchCurrentUser } from "./redux/auth/auth-operation";
+import Container from "./components/Container/Container";
+import PrivateRoute from "./components/UserMenu/PrivateRoute";
+import PublicRoute from "./components/UserMenu/PublicRoute";
+import authSelectors from "./redux/auth/auth-selectors";
+import Loading from "./components/Loader/Loading";
+
+const HomeView = lazy(() => import("./views/HomeView"));
+const ContactsView = lazy(() => import("./views/ContactsView"));
+const RegisterView = lazy(() => import("./views/RegisrterView"));
+const LoginView = lazy(() => import("./views/LoginView"));
 
 export default function App() {
   const dispatch = useDispatch();
+  const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
 
   useEffect(() => {
-    dispatch(authOperations.fetchCurrentUser());
+    dispatch(fetchCurrentUser());
   }, [dispatch]);
 
-  const [filter, setFilter] = useState("");
-  const { data, isFetching } = useFetchContactsQuery();
-  const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
-
-  // console.log(useFetchContactsQuery());
-
-  const getFilteredElems = (contacts) => {
-    const normalizedFilter = filter.toLowerCase();
-
-    return contacts.filter(({ name }) =>
-      name.toLowerCase().includes(normalizedFilter)
-    );
-  };
-
   return (
-    <div className="container">
-      <header>
+    !isFetchingCurrentUser && (
+      <Container>
         <AppBar />
-      </header>
-      {/* <UserMenu />
-			<RegLogMenu /> */}
-
-      <Routes>
-        <Route path="/" element={<RegistrationForm />} />
-
-        <Route path="/login" element={<LoginForm />} />
-
-        <Route
-          path="/phonebook"
-          element={
-            <>
-              <ContactForm />,
-              <Filter onChange={(e) => setFilter(e.target.value)} />,
-              {isFetching ? (
-                <h1>Loading...</h1>
-              ) : (
-                <ContactList
-                  data={getFilteredElems(data)}
-                  onDelete={deleteContact}
-                  deleting={isDeleting}
-                />
-              )}
-            </>
-          }
-        />
-      </Routes>
-    </div>
+        <Suspense fallback={<Loading />}>
+          <Routes>
+            <Route path="/*" element={<HomeView />} />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute redirectTo="/login">
+                  <ContactsView />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute redirectTo="/*">
+                  <RegisterView />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute redirectTo="/contacts">
+                  <LoginView />
+                </PublicRoute>
+              }
+            />
+          </Routes>
+        </Suspense>
+      </Container>
+    )
   );
 }
